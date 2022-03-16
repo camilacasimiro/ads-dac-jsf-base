@@ -29,10 +29,10 @@ public class PessoasEmMemoria implements Pessoas {
 
         this.dependentes.addAll(
                 Arrays.asList(
-                        new Dependente("5366b487-bf9e-46c9-aac1-99e96dcea70b", "Job", LocalDate.now().plusDays(1)), //amanhã
-                        new Dependente("db9aee2d-811b-42e8-945a-5d10a4560f33", "Antonio", null), //nulo
-                        new Dependente("21ce7508-5a9e-4f8b-9a41-b497f91c79bb", "Mariana", LocalDate.now().minusDays(1)), //ontem
-                        new Dependente("e41f0a5e-095e-4f4a-9d60-f6fd5465965d", "Ana", LocalDate.now()) //hoje
+                        new Dependente(1, "Job", LocalDate.now().plusDays(1)), //amanhã
+                        new Dependente(2, "Antonio", null), //nulo
+                        new Dependente(3, "Mariana", LocalDate.now().minusDays(1)), //ontem
+                        new Dependente(5, "Ana", LocalDate.now()) //hoje
                 )
         );
     }
@@ -71,17 +71,18 @@ public class PessoasEmMemoria implements Pessoas {
                 .orElse(Pessoa.fake());
     }
 
+
     @Override
     public List<Dependente> todosOsDepentendes() {
         return Collections.unmodifiableList(dependentes);
     }
 
     @Override
-    public Dependente localizarDependenteComId(String uuid) {
+    public Dependente localizarDependenteComId(String id) {
         //TODO: implementar
         return todosOsDepentendes()
                 .stream()
-                .filter(d -> d.getUuid().equals(uuid))
+                .filter(d -> d.getId().equals(id))
                 .findFirst()
                 .orElse(Dependente.fake());
     }

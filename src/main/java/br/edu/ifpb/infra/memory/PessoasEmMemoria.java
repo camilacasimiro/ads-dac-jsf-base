@@ -2,7 +2,6 @@ package br.edu.ifpb.infra.memory;
 
 import br.edu.ifpb.domain.Dependente;
 import br.edu.ifpb.domain.Pessoa;
-import br.edu.ifpb.domain.Pessoas;
 import br.edu.ifpb.domain.PessoasInterface;
 
 import java.time.LocalDate;
@@ -61,6 +60,16 @@ public class PessoasEmMemoria implements PessoasInterface {
                 .removeIf(p -> p.getId() == pessoa.getId());
         this.pessoas.add(pessoa);
 
+    }
+
+    @Override
+    public List<Pessoa> localizarPessoaComCPF(String cpf) {
+        return null;
+    }
+
+    @Override
+    public List<Dependente> localizarDependenteComId(Long idPessoa) {
+        return null;
     }
 
     @Override

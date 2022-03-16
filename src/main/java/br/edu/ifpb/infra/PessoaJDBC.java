@@ -1,11 +1,9 @@
 package br.edu.ifpb.infra;
 
+import br.edu.ifpb.domain.CPF;
 import br.edu.ifpb.domain.Dependente;
 import br.edu.ifpb.domain.Pessoa;
 import br.edu.ifpb.domain.PessoasInterface;
-import com.pratica.controller.BandaController;
-import com.pratica.domain.Banda;
-import com.pratica.domain.BandaInterface;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -35,7 +33,7 @@ public class PessoaJDBC implements PessoasInterface {
     }
 
     @Override
-    public List<Pessoa> todas() throws ClassNotFoundException, SQLException {
+    public List<Pessoa> todas() {
         try{
             List<Pessoa> pessoas= new ArrayList<>();
             ResultSet resultQuery = connection.prepareStatement( "SELECT * FROM pessoa").executeQuery();
@@ -55,7 +53,7 @@ public class PessoaJDBC implements PessoasInterface {
     public Pessoa converterPessoa (ResultSet result) throws SQLException{
         Long id = result.getLong("id");
         String nome = result.getString("nome");
-        String cpf = result.getString("cpf");
+        CPF cpf = new CPF(result.getString("cpf"));
 
         return new Pessoa(nome, id, cpf, null);
     }
@@ -109,10 +107,10 @@ public class PessoaJDBC implements PessoasInterface {
             statement.setString(1, cpf);
             statement.executeQuery();
 
-            ResultSet bandaResult = statement.getResultSet();
+            ResultSet pessoasResultSet = statement.getResultSet();
 
-            while ( bandaResult.next() ){
-                pessoa.add(converterPessoa(bandaResult));
+            while ( pessoasResultSet.next() ){
+                pessoa.add(converterPessoa(pessoasResultSet));
             }
             return pessoa;
 
@@ -136,10 +134,10 @@ public class PessoaJDBC implements PessoasInterface {
 
             ResultSet dependentesResult = statement.getResultSet();
 
-                dependentes = converterDependente(dependentesResult);
-
-                logger.log(Level.INFO, "Banda busca : " + dependentes);
-
+            while ( dependentesResult.next() ){
+                dependentes.add(converterDependentes(dependentesResult));
+                System.out.println(dependentes);
+            }
             return dependentes;
 
         } catch(SQLException ex){
@@ -148,8 +146,29 @@ public class PessoaJDBC implements PessoasInterface {
         }
     }
 
-    public Dependente converterDependente (ResultSet result) throws SQLException{
-        Long id = result.getLong("id");
+    @Override
+    public Dependente localizarDependenteComId(String idPessoa) {
+        return null;
+    }
+
+    @Override
+    public Pessoa localizarPessoaComId(long idPessoa) {
+        return null;
+    }
+
+    @Override
+    public List<Dependente> todosOsDepentendes() {
+        return null;
+    }
+
+    @Override
+    public void novo(Dependente dependente) {
+
+    }
+
+
+    public Dependente converterDependentes (ResultSet result) throws SQLException{
+        Integer id = result.getInt("id");
         String nome = result.getString("nome");
         String date = result.getString("dataDeNascimento");
         LocalDate dataDeNascimento = LocalDate.of(
@@ -157,6 +176,6 @@ public class PessoaJDBC implements PessoasInterface {
                 Integer.parseInt(date.substring(5, 7)),
                 Integer.parseInt(date.substring(8, 10))
         );
-        return new Pessoa(id, nome, dataDeNascimento);
+        return new Dependente(id, nome, dataDeNascimento);
     }
 }

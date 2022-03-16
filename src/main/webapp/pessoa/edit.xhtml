@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="../template.xhtml">>
+
+    <ui:define name="centro">
+
+        <h1 class="header center orange-text">Adicionar/Editar</h1>
+
+            <h:form>
+                <h:outputLabel for="nome" value="Nome"/>
+                <h:inputText id="nome" value="#{controle.pessoa.nome}" />
+
+                <h:outputLabel for="cpf" value="CPF"/>
+                <h:inputText id="cpf" value="#{controle.pessoa.cpf}"
+                             converter="converter.cpf"
+                             validator="validator.cpf"
+                />
+                <a:message for="cpf"  errorClass="erro" />
+                <br></br>
+
+<!--                <h:selectOneMenu value="{controladorDePessoas.pessoa.dependente}"-->
+<!--                                 converter="converter.Dependente">-->
+<!--                    <f:selectItems value="{controladorDePessoas.listarTodosOsDependentes()}"-->
+<!--                                   var="dep" itemLabel="{de.uuid}" />-->
+<!--                </h:selectOneMenu>-->
+
+
+                <a:panelGroup layout="block" class="row center">
+                     <h:commandButton value="salvar" action="#{controle.adicionar()}" class="btn"/>
+                </a:panelGroup>
+
+            </h:form>
+
+    </ui:define>
+</ui:composition>
+

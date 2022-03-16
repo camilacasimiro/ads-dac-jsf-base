@@ -6,43 +6,31 @@ import java.util.UUID;
 
 public class Dependente {
 
-    private String uuid;
+    private Integer id;
     private String nome;
     private LocalDate dataDeNascimento;
 
     public Dependente() {
-        this("");
+
     }
 
-    public Dependente(String nome) {
-        this(
-            UUID.randomUUID().toString(),
-            nome,
-            LocalDate.now()
-        );
-    }
-    public Dependente(String uuid,String nome) {
-        this(
-            uuid,nome,LocalDate.now()
-        );
-    }
-
-    public Dependente(String uuid,String nome,LocalDate dataDeNascimento) {
-        this.uuid = uuid;
+    public Dependente(Integer id, String nome, LocalDate dataDeNascimento) {
+        this.id = id;
         this.nome = nome;
         this.dataDeNascimento = dataDeNascimento;
     }
 
+
     public static Dependente fake() {
-        return new Dependente("-1","-1");
+        return new Dependente();
     }
 
-    public String getUuid() {
-        return uuid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -61,50 +49,16 @@ public class Dependente {
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public boolean naoValido() {
-        return nomeVazio() || nascimentoAnterior();
-    }
-
-    public boolean nomeVazio() {
-        return this.nome == null || this.nome.trim().equals("");
-    }
-
-    public boolean nascimentoAnterior() {
-        return this.dataDeNascimento == null
-            || this.dataDeNascimento.isEqual(LocalDate.now())
-            || this.dataDeNascimento.isAfter(LocalDate.now());
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dependente that = (Dependente) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.uuid);
-        hash = 89 * hash + Objects.hashCode(this.nome);
-        hash = 89 * hash + Objects.hashCode(this.dataDeNascimento);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Dependente other = (Dependente) obj;
-        if (!Objects.equals(this.uuid,other.uuid)) {
-            return false;
-        }
-        if (!Objects.equals(this.nome,other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataDeNascimento,other.dataDeNascimento)) {
-            return false;
-        }
-        return true;
+        return Objects.hash(id);
     }
 }

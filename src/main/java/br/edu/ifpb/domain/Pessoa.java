@@ -7,7 +7,7 @@ import java.util.UUID;
 public class Pessoa {
 
     private String nome;
-    private long id;
+    private Long id;
     private CPF cpf;
     private Dependente dependente;
 

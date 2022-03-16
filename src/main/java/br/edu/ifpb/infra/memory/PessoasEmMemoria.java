@@ -3,6 +3,7 @@ package br.edu.ifpb.infra.memory;
 import br.edu.ifpb.domain.Dependente;
 import br.edu.ifpb.domain.Pessoa;
 import br.edu.ifpb.domain.Pessoas;
+import br.edu.ifpb.domain.PessoasInterface;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class PessoasEmMemoria implements Pessoas {
+public class PessoasEmMemoria implements PessoasInterface {
 
 
     private final List<Pessoa> pessoas = new ArrayList<>();

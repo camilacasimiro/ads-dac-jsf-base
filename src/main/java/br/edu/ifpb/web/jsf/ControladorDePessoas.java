@@ -1,7 +1,7 @@
 package br.edu.ifpb.web.jsf;
 
 import br.edu.ifpb.domain.Pessoa;
-import br.edu.ifpb.domain.Pessoas;
+import br.edu.ifpb.domain.PessoasInterface;
 import br.edu.ifpb.infra.memory.PessoasEmMemoria;
 
 import javax.enterprise.context.SessionScoped;
@@ -13,7 +13,7 @@ import java.util.List;
 @SessionScoped
 public class ControladorDePessoas implements Serializable {
 
-    private Pessoas pessoas = new PessoasEmMemoria();
+    private PessoasInterface pessoas = new PessoasEmMemoria();
     private Pessoa pessoa = new Pessoa( "");
 
     public String adicionar(){

@@ -122,10 +122,10 @@ public class PessoaJDBC implements PessoasInterface {
         try{
 
             logger.log(Level.INFO, "Banda busca Entrando ");
-            List<Dependente> dependentes = null;
+            List<Dependente> dependentes = new ArrayList<>();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "DISTINCT SELECT * FROM pessoa_dependente WHERE id_pessoal= ?");
+                    "SELECT * FROM pessoa_dependente pd INNER JOIN dependente d ON pd.id_dependente = d.id INNER JOIN pessoa p ON pd.id_pessoa = p.id WHERE p.id = ? ");
 
             statement.setLong(1, idPessoa);
             statement.executeQuery();

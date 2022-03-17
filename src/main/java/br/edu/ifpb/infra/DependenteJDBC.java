@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class DependenteJDBC implements DependenteInterface {
 
     private static Connection connection;
@@ -32,7 +33,6 @@ public class DependenteJDBC implements DependenteInterface {
         try{
             PreparedStatement statement = connection.prepareStatement("" +
                     "INSERT INTO dependente (nome, dataDeNascimento) VALUES (?, ?)");
-
             statement.setString(1, dependente.getNome());
             statement.setDate(2, java.sql.Date.valueOf(dependente.getDataDeNascimento()));
             statement.executeQuery();
@@ -90,10 +90,10 @@ public class DependenteJDBC implements DependenteInterface {
     @Override
     public void atualizarDependente(Dependente dependente) {
         try{
-            PreparedStatement statement = connection.prepareStatement("" +
+            PreparedStatement statement = connection.prepareStatement(
                     "UPDATE dependente SET nome=?, dataDeNascimento=? WHERE id=?");
             statement.setString(1, dependente.getNome());
-            statement.setString(2, String.valueOf(dependente.getDataDeNascimento()));
+            statement.setDate(2, java.sql.Date.valueOf(dependente.getDataDeNascimento()));
             statement.setInt(3, dependente.getId());
             statement.executeQuery();
         } catch (SQLException e) {

@@ -25,7 +25,6 @@ public class PessoaControler implements Serializable {
     public PessoaControler(){
         this.pessoasInterface = (PessoasInterface) new PessoaJDBC();
 
-        listarDependentePorIdPessoa();
     }
 
     public List<Pessoa> listarPessoas(){
@@ -33,24 +32,32 @@ public class PessoaControler implements Serializable {
         return pessoasList;
     }
 
-    public List<Dependente> listarDependentePorIdPessoa(){
-        logger.log(Level.INFO, "Lista depedentepessoa" + pessoasInterface.localizarDependenteComId(2L));
-        return null;
+    public List<Dependente> listarDependentePorIdPessoa(Long id){
+        List<Dependente> dependenteList = pessoasInterface.localizarDependenteComId(id);
+        return dependenteList;
     }
 
     public String gravarPessoa(){
+        logger.log(Level.INFO, "Lista depedentepessoa" + this.pessoa.getCpf());
         if(this.pessoa.getId() > 0){
             this.pessoasInterface.atualizar(this.pessoa);
         } else{
-            this.pessoasInterface.atualizar(this.pessoa);
+            this.pessoasInterface.nova(this.pessoa);
         }
         this.pessoa = new Pessoa();
-        return "/Pessoa/list?faces-redirect=true";
+        return "/pessoa/list?faces-redirect=true";
     }
 
-    public void deletarPessoa(Pessoa pessoa){
+    public String deletarPessoa(Pessoa pessoa){
         pessoasInterface.excluir(pessoa);
+        return "/pessoa/list?faces-redirect=true";
     }
+
+    public String editar(Pessoa pessoa){
+        this.pessoa = pessoa;
+        return "/pessoa/edit?faces-redirect=true";
+    }
+
 
     public Pessoa getPessoa() {
         return pessoa;

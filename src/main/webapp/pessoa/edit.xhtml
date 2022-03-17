@@ -13,10 +13,10 @@
 
             <h:form>
                 <h:outputLabel for="nome" value="Nome"/>
-                <h:inputText id="nome" value="#{controle.pessoa.nome}" />
+                <h:inputText id="nome" value="#{pessoaControler.pessoa.nome}" />
 
                 <h:outputLabel for="cpf" value="CPF"/>
-                <h:inputText id="cpf" value="#{controle.pessoa.cpf}"
+                <h:inputText id="cpf" value="#{pessoaControler.pessoa.cpf}"
                              converter="converter.cpf"
                              validator="validator.cpf"
                 />
@@ -31,7 +31,7 @@
 
 
                 <a:panelGroup layout="block" class="row center">
-                     <h:commandButton value="salvar" action="#{controle.adicionar()}" class="btn"/>
+                     <h:commandButton value="salvar" action="#{pessoaControler.gravarPessoa()}" class="btn"/>
                 </a:panelGroup>
 
             </h:form>

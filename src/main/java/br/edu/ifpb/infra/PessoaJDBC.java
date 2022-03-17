@@ -59,7 +59,7 @@ public class PessoaJDBC implements PessoasInterface {
     @Override
     public void nova(Pessoa pessoa) {
         try{
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Pessoa (nome, cpf) VALUES (?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Pessoa (nome, CPF) VALUES (?, ?)");
 
             statement.setString(1, pessoa.getNome());
             statement.setString(2, pessoa.getCpf().toString());
@@ -73,7 +73,7 @@ public class PessoaJDBC implements PessoasInterface {
     @Override
     public void atualizar(Pessoa pessoa) {
         try{
-            PreparedStatement statement = connection.prepareStatement("UPDATE banda SET nome=?,cpf=? WHERE id=?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE pessoa SET nome=? ,CPF=? WHERE id=?");
             statement.setString(1, pessoa.getNome());
             statement.setString(2, pessoa.getCpf().toString());
             statement.setLong(3, pessoa.getId());
@@ -86,7 +86,7 @@ public class PessoaJDBC implements PessoasInterface {
     @Override
     public void excluir(Pessoa pessoa) {
         try{
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM banda WHERE id=?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM pessoa WHERE id=?");
             statement.setLong(1, pessoa.getId());
             statement.executeQuery();
         } catch (SQLException e){
@@ -100,7 +100,7 @@ public class PessoaJDBC implements PessoasInterface {
             List<Pessoa> pessoa= new ArrayList<>();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM pessoa WHERE cpf = ?");
+                    "SELECT * FROM pessoa WHERE CPF = ?");
 
             statement.setString(1, cpf);
             statement.executeQuery();
@@ -121,7 +121,7 @@ public class PessoaJDBC implements PessoasInterface {
     public List<Dependente> localizarDependenteComId(Long idPessoa) {
         try{
 
-            logger.log(Level.INFO, "Banda busca Entrando ");
+            logger.log(Level.INFO, "Dependente busca Entrando ");
             List<Dependente> dependentes = new ArrayList<>();
 
             PreparedStatement statement = connection.prepareStatement(

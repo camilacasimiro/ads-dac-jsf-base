@@ -4,6 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       template="../template.xhtml">
 
     <ui:define name="container-template">
@@ -22,13 +23,22 @@
 
                 <h:dataTable value="#{pessoaControler.listarPessoas()}" var="pessoa">
                     <h:column>
-                        <f:facet name="">Nome</f:facet>
+                        <f:facet name="header">Nome</f:facet>
                         #{pessoa.nome}
                     </h:column>
 
                     <h:column>
                         <f:facet name ="header">CPF</f:facet>
                         <h:outputText value="#{pessoa.cpf}" converter="converter.cpf" />
+                    </h:column>
+
+                    <h:column>
+                            <p:outputLabel value="Dependentes"/>
+                            <p:selectOneMenu id="labeled"
+                                             alwaysDisplayLabel="true">
+                                <f:selectItems value="#{pessoaControler.listarDependentePorIdPessoa(pessoa.id)}" var="dep"
+                                               itemLabel="#{dep.nome}" itemValue="#{dep}"/>/>
+                            </p:selectOneMenu>
                     </h:column>
 
                     <h:column>

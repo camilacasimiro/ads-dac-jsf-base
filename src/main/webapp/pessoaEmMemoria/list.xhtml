@@ -20,7 +20,7 @@
                                    id="download-button"/>
                 </h:panelGroup>
 
-                <h:dataTable value="#{pessoaControler.listarPessoas()}" var="pessoa">
+                <h:dataTable value="#{controle.todasAsPessoas()}" var="pessoa">
                     <h:column>
                         <f:facet name="">Nome</f:facet>
                         #{pessoa.nome}
@@ -33,12 +33,12 @@
 
                     <h:column>
                         <f:facet name ="header">remover</f:facet>
-                        <h:commandButton value="x" action="#{pessoaControler.deletarPessoa(pessoa)}" class="btn"/>
+                        <h:commandButton value="x" action="#{controle.remover(pessoa)}" class="btn"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name ="header">editar</f:facet>
-                        <h:commandButton value="+" action="#{pessoaControler.editar(pessoa)}" class="btn"/>
+                        <h:commandButton value="+" action="#{controle.editar(pessoa)}" class="btn"/>
                     </h:column>
                 </h:dataTable>
             </h:form>

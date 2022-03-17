@@ -20,7 +20,6 @@ public class PessoaJDBC implements PessoasInterface {
 
     private static final Logger logger = Logger.getLogger(PessoaJDBC.class.getName());
     public PessoaJDBC() {
-
         try {
             Class.forName("org.postgresql.Driver");
             this.connection = DriverManager.getConnection(
@@ -37,7 +36,6 @@ public class PessoaJDBC implements PessoasInterface {
         try{
             List<Pessoa> pessoas= new ArrayList<>();
             ResultSet resultQuery = connection.prepareStatement( "SELECT * FROM pessoa").executeQuery();
-//            next percore o ResultSet e reforna false quando estar na ultima posição
             while ( resultQuery.next() ){
                 pessoas.add(converterPessoa(resultQuery));
                 System.out.println(pessoas);
@@ -145,27 +143,6 @@ public class PessoaJDBC implements PessoasInterface {
             return null;
         }
     }
-
-    @Override
-    public Dependente localizarDependenteComId(String idPessoa) {
-        return null;
-    }
-
-    @Override
-    public Pessoa localizarPessoaComId(long idPessoa) {
-        return null;
-    }
-
-    @Override
-    public List<Dependente> todosOsDepentendes() {
-        return null;
-    }
-
-    @Override
-    public void novo(Dependente dependente) {
-
-    }
-
 
     public Dependente converterDependentes (ResultSet result) throws SQLException{
         Integer id = result.getInt("id");

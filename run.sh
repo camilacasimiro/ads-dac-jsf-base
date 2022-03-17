@@ -1,3 +1,7 @@
+echo "\033[1;31m----< gerando .war >------\033[0m"
 mvn clean package
-docker image build -t ricardojob/app .
-docker container run -p 8081:8080 --name app ricardojob/app
+echo "\033[1;31m----< iniciando o docker-compose >------\033[0m"
+docker-compose -f ./docker/docker-compose.yml up --build -d
+echo "\033[1;31m----< limpando arquivos temporários >------\033[0m"
+mvn clean
+echo "\033[1;32m----< concluído >------\033[0m"

@@ -11,6 +11,9 @@ public class Pessoa {
     private CPF cpf;
     private Dependente dependente;
 
+    public Pessoa() {
+    }
+
     public Pessoa(String nome) {
         this(nome, "11111111111");
     }

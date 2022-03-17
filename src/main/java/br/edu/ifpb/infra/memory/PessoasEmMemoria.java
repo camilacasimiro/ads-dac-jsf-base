@@ -2,7 +2,7 @@ package br.edu.ifpb.infra.memory;
 
 import br.edu.ifpb.domain.Dependente;
 import br.edu.ifpb.domain.Pessoa;
-import br.edu.ifpb.domain.PessoasInterface;
+import br.edu.ifpb.domain.Pessoas;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class PessoasEmMemoria implements PessoasInterface {
+public class PessoasEmMemoria implements Pessoas {
 
 
     private final List<Pessoa> pessoas = new ArrayList<>();
@@ -61,17 +61,6 @@ public class PessoasEmMemoria implements PessoasInterface {
         this.pessoas.add(pessoa);
 
     }
-
-    @Override
-    public List<Pessoa> localizarPessoaComCPF(String cpf) {
-        return null;
-    }
-
-    @Override
-    public List<Dependente> localizarDependenteComId(Long idPessoa) {
-        return null;
-    }
-
     @Override
     public Pessoa localizarPessoaComId(long id) {
         return todas() // List<Pessoa>

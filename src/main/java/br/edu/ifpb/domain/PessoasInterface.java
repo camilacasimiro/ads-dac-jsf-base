@@ -17,14 +17,4 @@ public interface PessoasInterface extends Serializable {
 
     public List<Dependente> localizarDependenteComId(Long idPessoa);
 
-    public Dependente localizarDependenteComId(String idPessoa);
-
-    public List<Dependente> todosOsDepentendes();
-
-    public void novo(Dependente dependente);
-
-    public Pessoa localizarPessoaComId(long id);
-
-
-
 }

@@ -1,6 +1,6 @@
-INSERT INTO pessoa (nome, cpf) VALUES ('Jennifer','1234564');
-INSERT INTO pessoa (nome, cpf) VALUES ('Josefa','1234458');
-INSERT INTO pessoa (nome, cpf) VALUES ('Job','1234452');
+INSERT INTO pessoa (nome, cpf) VALUES ('Jennifer','12345649998');
+INSERT INTO pessoa (nome, cpf) VALUES ('Josefa','12344585467');
+INSERT INTO pessoa (nome, cpf) VALUES ('Job','12344528888');
 
 INSERT INTO dependente (nome, dataDeNascimento) VALUES ('Bob','1997-05-20');
 INSERT INTO dependente (nome, dataDeNascimento) VALUES ('Zé','1989-08-10');

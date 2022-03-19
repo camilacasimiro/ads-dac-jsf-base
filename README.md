@@ -1,19 +1,15 @@
-# JSF
+<div align="center">
+<img src="https://user-images.githubusercontent.com/57498887/134352674-9837ff29-10ff-44f7-8c46-cb517767be49.png" width="175" height="250">
 
-Este projeto contém um projeto base para o desenvolvimento dos conteúdos e assuntos relacionados ao JSF.
+Instituto Federal de Educação, Ciência e Tecnológica da Paraíba
+Tecnologia em Análise e Desenvolvimento de Sistemas
+Processo de Desenvolvimento de Software
+Professor: Ricardo de Sousa Job
+</div>
 
-## Executando o projeto
+# Atividade Indiviual 01 – Docker-Jsf
 
-Para executarmos o código precisamos realizar o clone do projeto. Posteriormente, na pasta raiz do projeto, executar os seguintes comandos (ou executar o _script_ `run.sh`):
-* `mvn clean package`
-* `docker image build -t ricardojob/app .`
-* `docker container run -p 8081:8080 --name app ricardojob/app`
+## Equipe:
+- <a href="https://github.com/camilacasimiro" alt="github">Camila Casimiro</a>
+- <a href="https://github.com/JenniferSilva46" alt="github">Jennifer Silva</a>
 
-A aplicação está disponível no link: `http://localhost:8081/app/`. 
-
-> Importante observar o mapeamento das portas feita no momento de iniciar o container. Com a configuração apresentada teremos o seguinte comportamento: quando uma requisição ocorrer para porta (8081) do __host__ (máquina com o docker instalado), a requisição será redirecionada à porta (8080) do container.
-
-## Roteiro de estudos
-
-
-Temos um roteiro de apoio para revisar os conteúdos apresentados. Neste [roteiro](https://docs.google.com/document/d/1qjF9LxVsnIU8R0Ad3z1T5acijp4RUB52BSF70p3cqPg/edit) temos **oito** requisitos que após serem implementados, temos revisado todos os principais conceitos do framework Java ServerFaces.

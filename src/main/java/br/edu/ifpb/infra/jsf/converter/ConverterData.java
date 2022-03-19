@@ -18,6 +18,8 @@ public class ConverterData implements Converter{
                 Integer.parseInt(value.substring(5, 7)), //mês
                 Integer.parseInt(value.substring(8, 10)) //dia
         );
+        LocalDate dataAtual = LocalDate.now();
+        System.out.println(dataAtual);
         return dataDeNascimento;
     }
 

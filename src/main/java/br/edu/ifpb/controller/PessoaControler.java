@@ -11,6 +11,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +21,7 @@ public class PessoaControler implements Serializable {
 
     private PessoasInterface pessoasInterface;
     private Pessoa pessoa = new Pessoa();
+    private Dependente dependenteSelect = new Dependente();
     private static final Logger logger = Logger.getLogger(PessoaJDBC.class.getName());
 
     public PessoaControler(){
@@ -38,11 +40,11 @@ public class PessoaControler implements Serializable {
     }
 
     public String gravarPessoa(){
-        logger.log(Level.INFO, "Lista depedentepessoa" + this.pessoa.getCpf());
-        if(this.pessoa.getId() > 0){
-            this.pessoasInterface.atualizar(this.pessoa);
-        } else{
+        logger.log(Level.INFO, "dependente selec" + this.dependenteSelect);
+        if(Objects.isNull(this.pessoa.getId())){
             this.pessoasInterface.nova(this.pessoa);
+        } else{
+            this.pessoasInterface.atualizar(this.pessoa);
         }
         this.pessoa = new Pessoa();
         return "/pessoa/list?faces-redirect=true";
@@ -65,5 +67,13 @@ public class PessoaControler implements Serializable {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public Dependente getDependenteSelect() {
+        return dependenteSelect;
+    }
+
+    public void setDependenteSelect(Dependente dependenteSelect) {
+        this.dependenteSelect = dependenteSelect;
     }
 }

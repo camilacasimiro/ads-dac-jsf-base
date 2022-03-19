@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 
 @Named("controllerDependente")
@@ -22,10 +23,11 @@ public class DependenteController implements Serializable {
     }
 
     public String salvarDependente(){
-        if(this.dependente.getId() > 0){
-            this.dependenteInterface.atualizarDependente(this.dependente);
-        } else{
+
+        if(Objects.isNull(this.dependente.getId())){
             this.dependenteInterface.novoDependente(this.dependente);
+        } else{
+            this.dependenteInterface.atualizarDependente(this.dependente);
         }
         this.dependente = new Dependente();
 

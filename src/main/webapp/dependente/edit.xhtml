@@ -18,6 +18,7 @@
             <h:outputLabel for="dataDeNascimento" value="Data de Nascimento (YYYY/MM/"/>
             <h:inputText id="dataDeNascimento" value="#{controllerDependente.dependente.dataDeNascimento}"
                          converter="converter.data"
+                         validator="validator.data"
             />
             <a:message for="dataDeNascimento"  errorClass="erro" />
             <br></br>

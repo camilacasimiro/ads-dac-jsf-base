@@ -51,7 +51,6 @@ public class DependenteJDBC implements DependenteInterface {
 
             while ( resultQuery.next() ){
                 dependentes.add(converterDependentes(resultQuery));
-                System.out.println(dependentes);
             }
             return dependentes;
 

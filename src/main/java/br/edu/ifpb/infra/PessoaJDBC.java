@@ -38,7 +38,6 @@ public class PessoaJDBC implements PessoasInterface {
             ResultSet resultQuery = connection.prepareStatement( "SELECT * FROM pessoa").executeQuery();
             while ( resultQuery.next() ){
                 pessoas.add(converterPessoa(resultQuery));
-                System.out.println(pessoas);
             }
             return pessoas;
 
@@ -62,7 +61,7 @@ public class PessoaJDBC implements PessoasInterface {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Pessoa (nome, CPF) VALUES (?, ?)");
 
             statement.setString(1, pessoa.getNome());
-            statement.setString(2, pessoa.getCpf().toString());
+            statement.setString(2, pessoa.getCpf().valor());
             statement.executeQuery();
 
         } catch (SQLException e){
@@ -75,7 +74,7 @@ public class PessoaJDBC implements PessoasInterface {
         try{
             PreparedStatement statement = connection.prepareStatement("UPDATE pessoa SET nome=? ,CPF=? WHERE id=?");
             statement.setString(1, pessoa.getNome());
-            statement.setString(2, pessoa.getCpf().toString());
+            statement.setString(2, pessoa.getCpf().valor());
             statement.setLong(3, pessoa.getId());
             statement.executeQuery();
         } catch (SQLException e) {
@@ -120,8 +119,6 @@ public class PessoaJDBC implements PessoasInterface {
 
     public List<Dependente> localizarDependenteComId(Long idPessoa) {
         try{
-
-            logger.log(Level.INFO, "Dependente busca Entrando ");
             List<Dependente> dependentes = new ArrayList<>();
 
             PreparedStatement statement = connection.prepareStatement(
@@ -134,7 +131,6 @@ public class PessoaJDBC implements PessoasInterface {
 
             while ( dependentesResult.next() ){
                 dependentes.add(converterDependentes(dependentesResult));
-                System.out.println(dependentes);
             }
             return dependentes;
 
